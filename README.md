@@ -8,6 +8,7 @@ Key Features
 4. Contest Rewards: Earn coins for attempting questions in contests, with bonuses for correct answers and faster completion.
 
 Class and Method Descriptions
+
 Class: AlgoCoins
 
 Attributes
