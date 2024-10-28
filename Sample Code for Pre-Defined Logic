@@ -1,0 +1,59 @@
+class AlgoCoins:
+    def __init__(self):
+        self.coins = 0
+
+    def complete_question_assignment(self):
+        """Adds coins for each completed question in an assignment."""
+        self.coins += 20
+
+    def complete_assignment(self):
+        """Adds a bonus for completing all questions within an assignment."""
+        self.coins += 50
+
+    def complete_all_assignments(self):
+        """Adds a bonus for completing all assignments in a month."""
+        self.coins += 150
+
+    def attempt_question_contest(self, correct=False, submission_attempts=0):
+        """Awards coins based on contest question attempts and correctness."""
+        self.coins += 10  # Coins for attempting the question
+        if correct:
+            bonus = 30  # Base correct answer bonus
+            bonus += max(0, 30 - (submission_attempts * 10))  # Extra bonus for fewer attempts
+            self.coins += bonus
+
+    def complete_contest(self):
+        """Adds bonus coins for getting all contest questions right."""
+        self.coins += 100
+
+    def complete_almost_all_contest(self, wrong_questions=1):
+        """Adds coins based on near-perfect contest performance."""
+        if wrong_questions == 1:
+            self.coins += 80
+        elif wrong_questions == 2:
+            self.coins += 60
+
+    def total_coins(self):
+        """Returns the total coins collected."""
+        return self.coins
+
+# Example Usage
+coins_manager = AlgoCoins()
+
+# Simulate completing assignments
+for _ in range(4):  # 4 assignments
+    for _ in range(5):  # 5 questions per assignment
+        coins_manager.complete_question_assignment()
+    coins_manager.complete_assignment()  # Complete each assignment after all questions
+
+coins_manager.complete_all_assignments()  # Complete all assignments
+
+# Simulate contest
+for _ in range(6):  # Attempting all contest questions
+    coins_manager.attempt_question_contest(correct=True, submission_attempts=1)  # Assuming all are correct on the second attempt
+
+coins_manager.complete_contest()
+
+# Calculate total coins collected
+total_collected_coins = coins_manager.total_coins()
+print(f'Total coins collected: {total_collected_coins}')
